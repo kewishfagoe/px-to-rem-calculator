@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+
+@theme {
+    --color-primary: #0000EE;
+    --color-background: #f8fafc;
+}
+
+@layer base {
+    body {
+        /* @apply bg-slate-50 */
+        @apply bg-background flex min-w-[320px] min-h-screen m-0
+    }
+    #app {
+        @apply w-[800px] max-w-[800px] mx-auto my-0 px-8 py-16
+    }
+}
