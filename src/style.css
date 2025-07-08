@@ -3,7 +3,8 @@
 @plugin "daisyui";
 
 @theme {
-    --color-primary: #0000EE;
+    --color-brand: #0000EE;
+    --color-brand-hover: #3333f1;
     --color-background: #f8fafc;
 }
 
@@ -13,6 +14,6 @@
         @apply bg-background flex min-w-[320px] min-h-screen m-0
     }
     #app {
-        @apply w-[800px] max-w-[800px] mx-auto my-0 px-8 py-16
+        @apply w-[900px] max-w-[900px] mx-auto my-0 px-8 py-16
     }
 }

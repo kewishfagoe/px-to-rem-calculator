@@ -70,7 +70,7 @@ onMounted(() => {
             <div v-if="showError" class="text-red-600 text-xs mt-2">The root font size needs to be a valid whole number larger than 0.</div>
             <div class="modal-action">
                 <button class="btn" @click="closeModal">Close</button>
-                <button class="btn btn-primary" @click="setNewRootFontSize">Save</button>
+                <button class="btn btn-primary bg-brand hover:bg-brand-hover" @click="setNewRootFontSize">Save</button>
             </div>
         </div>
     </dialog>
