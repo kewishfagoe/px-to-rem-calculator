@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Toast from './Toast.vue'
+import Card from '../layouts/Card.vue'
 
 const props = defineProps<{
     rootFontSize: number
@@ -36,8 +37,8 @@ function copyResultToClipboard() {
 </script>
 
 <template>
-    <div class="card bg-white min-w-75 max-w-90 shadow-sm m-1">
-        <div class="card-body">
+    <Card>
+        <template v-slot:body>
             <label class="input join-item">
                 <input
                     type="number"
@@ -77,8 +78,8 @@ function copyResultToClipboard() {
                     </div>
                 </div>
             </Transition>
-        </div>
-    </div>
+        </template>
+    </Card>
 
     <Transition name="fade">
         <Toast v-if="showCopiedMsg" type="success" message="Result copied to clipboard!"/>
