@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default;
+}
 
 @theme {
     --color-brand: #0000EE;
