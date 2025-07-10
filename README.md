@@ -54,7 +54,6 @@ npm run build
 ## Acknowledgements
 
 - [Favicon used](https://www.reshot.com/free-svg-icons/item/size-advertising-4DA63UVR7M/)
-- I made use of some of the TailwindCSS classes [Flowbite](https://flowbite.com/docs/forms/input-field/) uses for its component library.
 - [Edit icon](https://icons.getbootstrap.com/icons/pencil/)
 - [Copy icon](https://icons.getbootstrap.com/icons/copy/)
 
