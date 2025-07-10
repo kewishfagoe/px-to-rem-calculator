@@ -5,6 +5,7 @@ import Heading from './components/Heading.vue';
 import Footer from './components/Footer.vue';
 import SetRootFontSizeModal from './components/SetRootFontSizeModal.vue';
 import PxToRem from './components/PxToRem.vue';
+import RemToPx from './components/RemToPx.vue';
 
 const rootFontSize = ref<number>(16)
 
@@ -58,8 +59,9 @@ onMounted(() => {
                 </span>
             </p>
         </div>
-        <div class="flex flex-wrap mt-20">
+        <div class="flex flex-wrap mt-20 items-start">
             <PxToRem :root-font-size="rootFontSize" />
+            <RemToPx :root-font-size="rootFontSize" />
         </div>
         <Footer />
         <SetRootFontSizeModal ref="modalRef" :root-font-size="rootFontSize" @update-root-font-size="updateRootFontSize" />
