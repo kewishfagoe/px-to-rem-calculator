@@ -5,27 +5,38 @@ const props = defineProps<{
     rootFontSize: number
 }>()
 
-const pixelValue = ref<number>(1)
+const remValue = ref<number>(1)
 const result = ref<number>(0)
 
 const showSuccess = ref<boolean>(false)
 const showError = ref<boolean>(false)
-function calculateRemValue() {
-    if (pixelValue.value <= 0 || pixelValue.value >= 1000000 || !Number.isInteger(pixelValue.value)) {
+function calculatePixelValue() {
+    if (remValue.value <= 0 || remValue.value >= 1000000 || isMoreThan3Decimals(remValue.value)) {
         showError.value = true
         setTimeout(() => {
             showError.value = false
-        }, 3000)
+        }, 5000)
         return
     }
 
-    result.value = parseFloat((pixelValue.value / props.rootFontSize).toFixed(4))
+    result.value = parseFloat((remValue.value * props.rootFontSize).toFixed(2))
     showSuccess.value = true
+}
+
+function isMoreThan3Decimals(num: number) {
+    const str = num.toString()
+
+    if (str.includes('.')) {
+        const decimals = str.split('.')[1]
+        return decimals.length > 3
+    }
+
+    return false
 }
 
 const showCopiedMsg = ref<boolean>(false)
 function copyResultToClipboard() {
-    navigator.clipboard.writeText(`${result.value}rem`)
+    navigator.clipboard.writeText(`${result.value}px`)
     showCopiedMsg.value = true
 
     setTimeout(() => {
@@ -42,17 +53,17 @@ function copyResultToClipboard() {
                     type="number"
                     min="1"
                     max="999999"
-                    placeholder="Enter pixel value..."
-                    v-model="pixelValue"
-                    @keyup.enter="calculateRemValue"
+                    placeholder="Enter rem value..."
+                    v-model="remValue"
+                    @keyup.enter="calculatePixelValue"
                     class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
-                <span class="label">px</span>
+                <span class="label">rem</span>
             </label>
             <div class="card-actions">
                 <button
                     class="btn bg-brand hover:bg-brand-hover text-primary-content w-full"
-                    @click="calculateRemValue"
+                    @click="calculatePixelValue"
                 >
                     Calculate
                 </button>
@@ -61,7 +72,7 @@ function copyResultToClipboard() {
                 <div class="mt-4" v-if="showSuccess">
                     <div class="stat bg-background shadow-sm">
                         <div class="stat-title">Result</div>
-                        <div class="stat-value text-xl sm:text-3xl">{{ result }} rem</div>
+                        <div class="stat-value text-xl sm:text-3xl">{{ result }} px</div>
                         <div class="stat-actions flex justify-end">
                             <button
                                 class="btn btn-neutral btn-sm"
@@ -95,7 +106,7 @@ function copyResultToClipboard() {
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Please enter a pixel value that is a valid whole number larger than 0.</span>
+                <span>Please enter a rem value that is a valid number larger than 0 with less than 4 decimal places.</span>
             </div>
         </div>
     </Transition>
