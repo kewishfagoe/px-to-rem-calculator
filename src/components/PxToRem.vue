@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Toast from './Toast.vue'
 
 const props = defineProps<{
     rootFontSize: number
@@ -80,35 +81,13 @@ function copyResultToClipboard() {
     </div>
 
     <Transition name="fade">
-        <div v-if="showCopiedMsg" class="toast">
-            <div class="alert alert-success">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Result copied to clipboard!</span>
-            </div>
-        </div>
+        <Toast v-if="showCopiedMsg" type="success" message="Result copied to clipboard!"/>
     </Transition>
     <Transition name="fade">
-        <div v-if="showError" class="toast">
-            <div class="alert alert-error">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Please enter a pixel value that is a valid whole number larger than 0.</span>
-            </div>
-        </div>
+        <Toast v-if="showError" type="error" message="Please enter a pixel value that is a valid whole number larger than 0."/>
     </Transition>
 </template>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
-}
 
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
 </style>

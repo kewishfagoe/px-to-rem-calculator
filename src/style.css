@@ -17,3 +17,13 @@
         @apply w-[900px] max-w-[900px] mx-auto my-0 px-8 py-16
     }
 }
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
