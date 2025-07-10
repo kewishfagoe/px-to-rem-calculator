@@ -12,7 +12,7 @@ const emits = defineEmits<{
 const newRootFontSize = ref<number>(props.rootFontSize)
 const showError = ref<boolean>(false)
 
-const modalRef = ref(null)
+const modalRef = ref<HTMLDialogElement | null>(null)
 
 function showModal() {
     if (modalRef.value) {

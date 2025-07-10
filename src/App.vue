@@ -34,7 +34,7 @@ const updateRootFontSize = (newValue: number) => {
 }
 
 
-const modalRef = ref(null)
+const modalRef = ref<HTMLDialogElement | null>(null)
 const showModal = () => {
     if (modalRef.value) {
         modalRef.value.showModal()
